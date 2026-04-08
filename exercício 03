@@ -1,0 +1,53 @@
+using System;
+
+namespace SistemaEstoque
+{
+    public class Produto
+    {
+        public string Nome;
+        public double Preco;
+        public int Quantidade;
+
+        public void ExibirDados()
+        {
+            Console.WriteLine($"Produto: {Nome} | Preço: R${Preco:N2} | Estoque: {Quantidade}");
+        }
+
+        public double CalcularValorTotal()
+        {
+            return Preco * Quantidade;
+        }
+    }
+
+    public class Program
+    {
+        public static void Main(string[] args)
+        {
+            Produto prod1 = new Produto();
+            prod1.Nome = "Teclado Mecânico";
+            prod1.Preco = 250.00;
+            prod1.Quantidade = 10;
+
+            Produto prod2 = new Produto();
+            prod2.Nome = "Mouse Gamer";
+            prod2.Preco = 150.00;
+            prod2.Quantidade = 20;
+
+            Produto prod3 = new Produto();
+            prod3.Nome = "Monitor 144hz";
+            prod3.Preco = 1200.00;
+            prod3.Quantidade = 5;
+
+            prod1.ExibirDados();
+            Console.WriteLine($"Valor Total em Estoque: R${prod1.CalcularValorTotal():N2}\n");
+
+            prod2.ExibirDados();
+            Console.WriteLine($"Valor Total em Estoque: R${prod2.CalcularValorTotal():N2}\n");
+
+            prod3.ExibirDados();
+            Console.WriteLine($"Valor Total em Estoque: R${prod3.CalcularValorTotal():N2}\n");
+
+            Console.ReadKey();
+        }
+    }
+}
