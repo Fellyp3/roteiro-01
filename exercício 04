@@ -1,0 +1,69 @@
+using System;
+
+namespace SistemaBancario
+{
+    public class ContaBancaria
+    {
+        public string Titular;
+        public string NumeroConta;
+        public double Saldo;
+
+        public void Depositar(double valor)
+        {
+            if (valor > 0)
+            {
+                Saldo += valor;
+                Console.WriteLine($"Depósito de R${valor:N2} realizado com sucesso na conta de {Titular}.");
+            }
+        }
+
+        public void Sacar(double valor)
+        {
+            if (valor <= Saldo)
+            {
+                Saldo -= valor;
+                Console.WriteLine($"Saque de R${valor:N2} realizado com sucesso.");
+            }
+            else
+            {
+                Console.WriteLine($"Saldo insuficiente para realizar o saque de R${valor:N2}.");
+            }
+        }
+
+        public void ExibirSaldo()
+        {
+            Console.WriteLine($"Conta: {NumeroConta} | Titular: {Titular} | Saldo Atual: R${Saldo:N2}");
+        }
+    }
+
+    public class Program
+    {
+        public static void Main(string[] args)
+        {
+            ContaBancaria conta1 = new ContaBancaria();
+            conta1.Titular = "João Silva";
+            conta1.NumeroConta = "12345-6";
+            conta1.Saldo = 500.00;
+
+            ContaBancaria conta2 = new ContaBancaria();
+            conta2.Titular = "Maria Oliveira";
+            conta2.NumeroConta = "98765-4";
+            conta2.Saldo = 100.00;
+
+            Console.WriteLine("--- Operações Conta 01 ---");
+            conta1.ExibirSaldo();
+            conta1.Depositar(200.00);
+            conta1.Sacar(100.00);
+            conta1.ExibirSaldo();
+
+            Console.WriteLine("\n--- Operações Conta 02 ---");
+            conta2.ExibirSaldo();
+            conta2.Sacar(150.00);
+            conta2.Depositar(50.00);
+            conta2.Sacar(150.00);
+            conta2.ExibirSaldo();
+
+            Console.ReadKey();
+        }
+    }
+}
